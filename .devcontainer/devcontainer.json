@@ -15,12 +15,16 @@
                 "donjayamanne.githistory",
                 "mhutchie.git-graph",
                 "streetsidesoftware.code-spell-checker",
-                "streetsidesoftware.code-spell-checker-portuguese-brazilian"
+                "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+                "streetsidesoftware.code-spell-checker-cspell-bundled-dictionaries"
             ]
         }
     },
     "forwardPorts": [
         1313
     ],
-    "postCreateCommand": "go version; hugo version"
+    "features": {
+        "ghcr.io/devcontainers/features/node": "lts"
+    },
+    "postCreateCommand": "go version; hugo version; node --version"
 }
