@@ -1,0 +1,8 @@
+baseURL = "${HUGO_BASEURL}" # "https://guilhermercarvalho.github.io/blog/"
+languageCode = 'en-us'
+title = 'My Blog'
+theme = 'ananke'
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
