@@ -1,0 +1,7 @@
+version: "0.2"
+language: en
+import:
+  - "@cspell/dict-software-terms/cspell-ext.json"
+  - "@cspell/dict-companies/cspell-ext.json"
+  - "@cspell/dict-fullstack/cspell-ext.json"
+  - "@cspell/dict-public-licenses/cspell-ext.json"
