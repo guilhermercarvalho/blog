@@ -3,6 +3,28 @@
 # Run manually: pre-commit run --all-files
 
 repos:
+  # Markdown linting
+  - repo: local
+    hooks:
+      - id: markdownlint
+        name: Lint Markdown files
+        entry: markdownlint
+        language: system
+        types: [markdown]
+        args: ['--config', '.markdownlint.json']
+        exclude: '^themes/|^public/|^resources/|^old/'
+
+  # Spell checking with CSpell
+  - repo: local
+    hooks:
+      - id: cspell
+        name: Spell check with CSpell
+        entry: cspell
+        language: system
+        types: [markdown]
+        args: ['--config', 'cspell.config.yaml', '--no-progress', '--no-summary']
+        exclude: '^themes/|^public/|^resources/|^old/'
+
   # General file checks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
