@@ -1,0 +1,112 @@
+name: Check Broken Links
+
+on:
+  schedule:
+    # Roda todo domingo às 00:00 UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch: # Permite execução manual
+  push:
+    branches:
+      - main
+    paths:
+      - 'content/**/*.md'
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.152.2'
+          extended: true
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Check broken links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Check all HTML files in public directory
+          args: |
+            --verbose
+            --no-progress
+            --max-redirects 5
+            --timeout 30
+            --max-retries 3
+            --exclude-mail
+            --exclude 'linkedin.com'
+            --exclude 'twitter.com'
+            --exclude 'facebook.com'
+            --exclude 'localhost'
+            --exclude '127.0.0.1'
+            './public/**/*.html'
+          fail: true
+          jobSummary: true
+
+      - name: Generate markdown report
+        if: failure()
+        run: |
+          echo "# Broken Links Report 🔗" > broken-links-report.md
+          echo "" >> broken-links-report.md
+          echo "**Date:** $(date +'%Y-%m-%d %H:%M:%S')" >> broken-links-report.md
+          echo "" >> broken-links-report.md
+          echo "## Summary" >> broken-links-report.md
+          echo "" >> broken-links-report.md
+          cat lychee/out.md >> broken-links-report.md
+
+      - name: Upload broken links report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: broken-links-report
+          path: broken-links-report.md
+          retention-days: 30
+
+      - name: Create issue on failure
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync('broken-links-report.md')
+              ? fs.readFileSync('broken-links-report.md', 'utf8')
+              : 'No detailed report available.';
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🔗 Broken Links Detected - ${new Date().toISOString().split('T')[0]}`,
+              body: report,
+              labels: ['bug', 'automated', 'broken-links']
+            });
+
+      - name: Comment on PR
+        if: failure() && github.event_name == 'push' && github.event.pull_request
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync('broken-links-report.md')
+              ? fs.readFileSync('broken-links-report.md', 'utf8')
+              : 'No detailed report available.';
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## ⚠️ Broken Links Detected\n\n${report}`
+            });
+
+      - name: Report success
+        if: success()
+        run: |
+          echo "✅ No broken links found!"
+          echo "All links are working correctly."
