@@ -23,7 +23,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.141.0
+      HUGO_VERSION: 0.152.2
     steps:
       - name: Install Hugo CLI
         run: |
@@ -49,6 +49,34 @@ jobs:
 
       - name: Update submodules
         run: git submodule update --init --recursive --remote
+
+      - name: Cache Hugo resources
+        uses: actions/cache@v4
+        with:
+          path: resources
+          key: ${{ runner.os }}-hugo-resources-${{ hashFiles('hugo.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-hugo-resources-
+
+      - name: Cache Hugo modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/hugo_cache
+            ${{ runner.temp }}/hugo_cache
+          key: ${{ runner.os }}-hugo-mod-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugo-mod-
+
+      - name: Cache build output
+        uses: actions/cache@v4
+        with:
+          path: |
+            .hugo_build.lock
+            public
+          key: ${{ runner.os }}-hugo-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-hugo-build-
 
       - name: Setup Pages
         id: pages
