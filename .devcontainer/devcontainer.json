@@ -20,11 +20,8 @@
             ]
         }
     },
-    "forwardPorts": [
+        "forwardPorts": [
         1313
     ],
-    "features": {
-        "ghcr.io/devcontainers/features/node": "lts"
-    },
     "postCreateCommand": "go version; hugo version; node --version"
 }
