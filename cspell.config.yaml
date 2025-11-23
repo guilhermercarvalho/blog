@@ -1,7 +1,89 @@
 version: "0.2"
-language: en
+language: "en,pt,pt-BR"
 import:
   - "@cspell/dict-software-terms/cspell-ext.json"
   - "@cspell/dict-companies/cspell-ext.json"
   - "@cspell/dict-fullstack/cspell-ext.json"
   - "@cspell/dict-public-licenses/cspell-ext.json"
+  - "@cspell/dict-pt-br/cspell-ext.json"
+
+# Ignore patterns
+ignoreRegExpList:
+  - "https?://[^\\s]+"          # URLs
+  - "\\b[A-Z][a-z]+[A-Z][a-z]+\\b"  # CamelCase (likely proper nouns)
+  - "\\b[A-Z]{2,}\\b"           # ACRONYMS
+  - "mailto:[^\\s]+"            # Email links
+  - "\\{\\{.*?\\}\\}"           # Hugo shortcodes
+  - "^```[\\s\\S]*?^```"        # Code blocks
+
+# Ignore specific patterns
+ignorePaths:
+  - "node_modules/**"
+  - ".git/**"
+  - "public/**"
+  - "resources/**"
+  - "themes/**"
+  - "*.min.js"
+  - "*.min.css"
+
+# Custom words - Technical terms in Portuguese and project-specific
+words:
+  # Português técnico
+  - refatoração
+  - escalável
+  - automação
+  - métricas
+  - produtividade
+  - gerenciamento
+  - versionamento
+  - monitoramento
+  - desempenho
+  - cobertura
+  - microsserviços
+
+  # Ferramentas e tecnologias
+  - Obsidian
+  - Vikunja
+  - ActivityWatch
+  - CSpell
+  - TypeScript
+  - JavaScript
+  - DevOps
+  - GitHub
+  - GitLab
+  - Docusaurus
+  - OpenAPI
+  - Mermaid
+  - Tachyons
+  - Ananke
+  - TOML
+  - WebP
+
+  # Conceitos técnicos
+  - CI/CD
+  - API
+  - REST
+  - SOLID
+  - backend
+  - frontend
+  - fullstack
+  - workflow
+  - pipeline
+  - submodules
+  - shortcodes
+  - frontmatter
+
+  # Nomes próprios do projeto
+  - Guilherme
+  - Carvalho
+  - gcarvalho
+  - guilhermercarvalho
+
+# Case sensitivity
+caseSensitive: false
+
+# Enable caching for better performance
+useGitignore: true
+cache:
+  useCache: true
+  cacheLocation: ".cspell-cache"

@@ -1,0 +1,104 @@
+# Pre-commit hooks for Hugo blog
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # General file checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trim trailing whitespace
+        exclude: '^themes/|^public/|^resources/'
+
+      - id: end-of-file-fixer
+        name: Fix end of files
+        exclude: '^themes/|^public/|^resources/'
+
+      - id: check-yaml
+        name: Check YAML syntax
+        args: ['--unsafe']
+        exclude: '^themes/'
+
+      - id: check-added-large-files
+        name: Check for large files
+        args: ['--maxkb=2048']
+        exclude: '^themes/|^public/|^resources/'
+
+      - id: mixed-line-ending
+        name: Check line endings
+        args: ['--fix=lf']
+        exclude: '^themes/|^public/'
+
+      - id: check-merge-conflict
+        name: Check for merge conflicts
+
+      - id: detect-private-key
+        name: Detect private keys
+
+  # Hugo build test
+  - repo: local
+    hooks:
+      - id: hugo-build
+        name: Test Hugo build
+        entry: hugo
+        args: ['--buildDrafts', '--buildFuture', '--cleanDestinationDir']
+        language: system
+        pass_filenames: false
+        always_run: true
+        verbose: true
+
+  # Front matter validation
+  - repo: local
+    hooks:
+      - id: validate-frontmatter
+        name: Validate YAML front matter
+        entry: bash
+        args:
+          - -c
+          - |
+            for file in "$@"; do
+              if [[ "$file" =~ \.md$ ]]; then
+                echo "Checking $file...";
+                if ! grep -q "^---" "$file"; then
+                  echo "ERROR: Missing front matter in $file";
+                  exit 1;
+                fi;
+                if ! awk "/^---$/{f++} f==1" "$file" | python3 -c "import sys, yaml; yaml.safe_load(sys.stdin)" 2>/dev/null; then
+                  echo "ERROR: Invalid YAML front matter in $file";
+                  exit 1;
+                fi;
+              fi;
+            done
+        language: system
+        files: '^content/.*\.md$'
+        exclude: '^themes/|^public/'
+
+  # Check for required front matter fields
+  - repo: local
+    hooks:
+      - id: required-frontmatter-fields
+        name: Check required front matter fields
+        entry: bash
+        args:
+          - -c
+          - |
+            for file in "$@"; do
+              if [[ "$file" =~ content/posts/.*\.md$ ]]; then
+                echo "Validating required fields in $file...";
+                if ! grep -q "^title:" "$file"; then
+                  echo "ERROR: Missing \"title\" in $file";
+                  exit 1;
+                fi;
+                if ! grep -q "^date:" "$file"; then
+                  echo "ERROR: Missing \"date\" in $file";
+                  exit 1;
+                fi;
+                if ! grep -q "^description:" "$file"; then
+                  echo "ERROR: Missing \"description\" in $file";
+                  exit 1;
+                fi;
+              fi;
+            done
+        language: system
+        files: '^content/posts/.*\.md$'
