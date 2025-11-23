@@ -1,0 +1,21 @@
+{{ $limit := .Get "limit" | default 5 }}
+{{ $pages := where site.RegularPages "Type" "posts" }}
+{{ $pages := $pages.ByDate.Reverse }}
+
+{{ with $pages }}
+{{ range first $limit . }}
+<article class="mb4 pb3 bb b--black-10">
+  <h3 class="f4 fw6 lh-title ma0 mb2">
+    <a href="{{ .RelPermalink }}" class="link black hover-blue">{{ .Title }}</a>
+  </h3>
+  <time class="f6 mid-gray db mb2">{{ .Date.Format "02 Jan 2006" }}</time>
+  {{ with .Params.description }}
+  <p class="f5 lh-copy mv0 dark-gray">{{ . | plainify | truncate 150 }}</p>
+  {{ else }}
+  <p class="f5 lh-copy mv0 dark-gray">{{ .Summary | plainify | truncate 150 }}</p>
+  {{ end }}
+</article>
+{{ end }}
+{{ else }}
+<p class="mid-gray f5 i">Nenhum post publicado ainda.</p>
+{{ end }}

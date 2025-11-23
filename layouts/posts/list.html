@@ -1,0 +1,44 @@
+{{ define "main" }}
+<article class="mw7 center ph3 ph4-ns">
+  <header class="pv3 pv4-ns bb b--black-10">
+    <h1 class="f3 f2-ns fw6">{{ .Title | default "Posts" }}</h1>
+    {{ with .Content }}
+      <div class="f5 lh-copy mid-gray">{{ . }}</div>
+    {{ end }}
+  </header>
+
+  <section class="pv3">
+    {{ range (.Paginate .Pages 10).Pages }}
+      <div class="flex flex-column flex-row-ns mb4 pb4 bb b--light-gray">
+        {{ $img := partial "func/GetFeaturedImage.html" . }}
+        {{ if $img }}
+          <div class="w-100 w-30-ns pr3-ns mb3 mb0-ns">
+            <a href="{{ .RelPermalink }}" aria-hidden="true">
+              <img src="{{ $img }}" alt="{{ .Title }}" class="db br2 w-100">
+            </a>
+          </div>
+        {{ end }}
+
+        <div class="{{ if $img }}w-70-ns{{ else }}w-100{{ end }}">
+          <time class="f6 db mid-gray">{{ .Date.Format "02 Jan 2006" }}</time>
+          <h2 class="f4 fw6 lh-title ma0 mb2">
+            <a class="link black hover-blue" href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h2>
+          <p class="f5 lh-copy mt0 mb3 mid-gray">
+            {{ if .Params.description }}
+              {{ .Params.description | truncate 200 }}
+            {{ else }}
+              {{ .Summary | plainify | truncate 200 }}
+            {{ end }}
+          </p>
+          <a href="{{ .RelPermalink }}" class="link blue hover-dark-blue f6 fw6">
+            Ler mais →
+          </a>
+        </div>
+      </div>
+    {{ end }}
+  </section>
+
+  {{ template "_internal/pagination.html" . }}
+</article>
+{{ end }}
