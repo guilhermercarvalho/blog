@@ -1,27 +1,43 @@
 {
-    "name": "Go & PostgreSQL",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "app",
-    "runServices": [
-        "app"
-    ],
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "name": "Hugo Blog",
+    "image": "mcr.microsoft.com/devcontainers/base:jammy",
+    "features": {
+        "ghcr.io/devcontainers/features/hugo:1": {
+            "version": "0.152.2",
+            "extended": true
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts"
+        },
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.12",
+            "installTools": true
+        }
+    },
     "customizations": {
         "vscode": {
             "extensions": [
                 "tamasfe.even-better-toml",
                 "yzhang.markdown-all-in-one",
-                "github.vscode-github-actions",
-                "donjayamanne.githistory",
-                "mhutchie.git-graph",
-                "streetsidesoftware.code-spell-checker",
-                "streetsidesoftware.code-spell-checker-portuguese-brazilian",
-                "streetsidesoftware.code-spell-checker-cspell-bundled-dictionaries"
-            ]
+                "github.vscode-github-actions"
+            ],
+            "settings": {
+                "editor.wordWrap": "wordWrapColumn",
+                "editor.wordWrapColumn": 120,
+                "files.trimTrailingWhitespace": true,
+                "[markdown]": {
+                    "editor.wordWrap": "wordWrapColumn",
+                    "editor.wordWrapColumn": 120
+                }
+            }
         }
     },
-        "forwardPorts": [
-        1313
-    ],
-    "postCreateCommand": "go version; hugo version; node --version"
+    "forwardPorts": [1313],
+    "portsAttributes": {
+        "1313": {
+            "label": "Hugo Server",
+            "onAutoForward": "notify"
+        }
+    },
+    "postCreateCommand": "git submodule update --init --recursive && pipx install pre-commit && pre-commit install"
 }
