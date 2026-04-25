@@ -1,0 +1,21 @@
+<!-- Override do layout single.html do tema Ananke para largura maior em posts -->
+{{ define "main" }}
+  <article class="pa3 pa4-ns nested-copy-line-height">
+    <header>
+      <h1 class="f1 lh-title mb3">{{ .Title }}</h1>
+      {{ if .Params.featured_image }}
+        <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" class="db mb4 w-100 mw7 center br2 shadow-5" />
+      {{ end }}
+      {{ if .Params.description }}
+        <p class="f4 mid-gray">{{ .Params.description }}</p>
+      {{ end }}
+    </header>
+    <section class="cf ph3 ph5-l pv3 pv4-l f4 lh-copy mid-gray" style="max-width: none;">
+      {{ .Content }}
+    </section>
+    <footer class="mt4">
+      {{ partial "tags.html" . }}
+      {{ partial "social/share.html" . }}
+    </footer>
+  </article>
+{{ end }}
