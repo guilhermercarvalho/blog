@@ -2,90 +2,30 @@ baseURL = 'https://guilhermercarvalho.github.io/blog/'
 title = 'Guilherme Carvalho Blog'
 theme = 'ananke'
 languageCode = 'en-us'
-
-defaultContentLanguage = "en"
 enableRobotsTXT = true
 
-[imaging]
-  # Default resample filter used for resizing (Box, NearestNeighbor, Linear, Gaussian, CatmullRom, Lanczos)
-  resampleFilter = "Lanczos"
-  # Default JPEG or WebP quality (1-100, higher is better)
-  quality = 85
-  # Hint for image processing (drawing|icon|photo|picture|text)
-  hint = "photo"
-  # Anchor used when cropping pictures (Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight)
-  anchor = "Smart"
-  # Default background color for image transparency
-  bgColor = "#ffffff"
-
-[imaging.exif]
-  # Include EXIF metadata
-  includeFields = ".*"
-  # Exclude GPS coordinates for privacy
-  excludeFields = "GPS.*"
-  # Disable if you want to completely remove EXIF data
-  disableDate = false
-  disableLatLong = true
-
 [pagination]
-pagerSize = 10
-
-# [languages.en]
-# contentDir = "content/en"
-# languageCode = 'en-US'
-# weight = 1
-# title = "Ananke"
-# # languageDirection = 'rtl' for Right-To-Left languages
-
-# [languages.fr]
-# contentDir = "content/fr"
-# languageCode = 'fr-FR'
-# weight = 2
-# title = "Ananke Fr"
-
-[sitemap]
-changefreq = "monthly"
-priority = 0.5
-filename = "sitemap.xml"
+  pagerSize = 10
 
 [taxonomies]
   tag = "tags"
   category = "categories"
 
 [params]
-mainSections = ["post"]
-text_color = ""
-author = "Guilherme Carvalho" # default author, override via `author` in a posts front matter
-favicon = ""
-site_logo = ""
-description = "Blog técnico sobre desenvolvimento backend, arquitetura de software, DevOps e boas práticas de engenharia."
-# choose a background color from any on this page: https://tachyons.io/docs/themes/skins/ and preface it with "bg-"
-background_color_class = "bg-black"
-# choose fitting and alignment styles for the featured image using Tachyons classes such as "cover|contain" for fitting and "bg-top|bg-center|bg-bottom" for alignment, or add any other class space-separated to customize further
-featured_image_class = "cover bg-top"
-# choose a color dimming class for the page or site header from any on this page: https://tachyons.io/docs/themes/skins/, preface it with "bg-" and add the value such as "-X0" where X is in [1,9]
-cover_dimming_class = "bg-black-60"
-recent_posts_number = 10
-
-# Google Analytics 4
-# Substitua pelo seu Measurement ID (formato: G-XXXXXXXXXX)
-googleAnalytics = ""  # Adicione seu GA4 Measurement ID aqui
-
-# Google Search Console
-# Substitua pelo código de verificação fornecido pelo GSC
-google_site_verification = ""  # Adicione seu código de verificação aqui
+  mainSections = ["post"]
+  custom_css = ["custom.css"]
+  author = "Guilherme Carvalho"
+  description = "Blog técnico sobre desenvolvimento backend, arquitetura de software, DevOps e boas práticas."
+  background_color_class = "bg-black"
+  featured_image_class = "cover bg-top"
+  cover_dimming_class = "bg-black-60"
+  recent_posts_number = 10
 
 [[menu.main]]
   name = "Posts"
   url = "/posts"
   weight = 1
-
-[[menu.main]]
-  name = "Tech"
-  url = "/categories/desenvolvimento-backend"
-  weight = 2
-
 [[menu.main]]
   name = "Sobre"
   url = "/about"
-  weight = 3
+  weight = 2

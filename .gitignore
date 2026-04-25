@@ -13,3 +13,18 @@ hugo.linux
 /.hugo_build.lock
 github
 .cspell-cache
+
+# Environment variables (secrets locais para testes)
+.env
+.env.local
+
+# Act (GitHub Actions local runner)
+/bin/
+.actrc
+
+# Temporary files
+temp/
+tmp/
+
+# To-do lists
+TODOs.md
