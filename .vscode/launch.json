@@ -1,0 +1,39 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Hugo Server",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "hugo server",
+      "cwd": "${workspaceFolder}",
+      "serverReadyAction": {
+        "pattern": "Web Server is available at (https?://[^\\s]+)",
+        "uriFormat": "%s",
+        "action": "openExternally"
+      }
+    },
+    {
+      "name": "Hugo Build",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "hugo --gc --minify",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "New Post",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "hugo new posts/${input:postName}.md",
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "postName",
+      "type": "promptString",
+      "description": "Nome do novo post (use hífens)",
+      "default": "novo-post"
+    }
+  ]
+}
