@@ -1,8 +1,11 @@
-baseURL = 'https://guilhermercarvalho.github.io/blog/'
-title = 'Guilherme Carvalho · Blog'
+baseURL = 'https://guilhermercarvalho.github.io/blog'
 theme = 'PaperMod'
-languageCode = 'pt-br'
 enableRobotsTXT = true
+
+# --- Multilíngue ---
+defaultContentLanguage = 'pt-br'
+defaultContentLanguageInSubdir = false
+disableDefaultLanguageRedirect = false
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
@@ -10,54 +13,105 @@ enableRobotsTXT = true
 [pagination]
   pagerSize = 10
 
+# Taxonomias globais (você pode repetir em cada idioma se quiser traduzi-las)
 [taxonomies]
   tag = "tags"
   category = "categories"
 
-[params]
-  author = "Guilherme Carvalho"
-  description = "Artigos sobre desenvolvimento backend, DevOps e produtividade."
-
-  [params.assets]
-    favicon = "/favicon.svg"
-
-  socialIcons = [
-    { name = "github", url = "https://github.com/guilhermercarvalho" },
-    { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },
-    { name = "email", url = "mailto:dev.gcarvalho@gmail.com" }
-  ]
-
-  ShowReadingTime = true
-  ShowShareButtons = true
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  ShowToc = true
-  TocOpen = false
-
-  defaultTheme = "auto"
-
-  [params.homeInfoParams]
-    Title = "Blog"
-    Content = "Bem-vindo ao meu blog! Aqui compartilho aprendizados, projetos e reflexões sobre desenvolvimento de software."
-
-[[menu.main]]
-  name = "Home"
-  url = "https://guilhermercarvalho.github.io/"
+# ============================================
+# IDIOMA 1 – Português (padrão)
+# ============================================
+[languages.pt-br]
+  languageName = "Português (Brasil)"
   weight = 1
-[[menu.main]]
-  name = "Blog"
-  url = "/posts"
+  contentDir = "content/pt"
+  title = "Guilherme Carvalho · Blog"
+
+  [languages.pt-br.params]
+    author = "Guilherme Carvalho"
+    description = "Artigos sobre desenvolvimento backend, DevOps e produtividade."
+    ShowReadingTime = true
+    ShowShareButtons = true
+    ShowPostNavLinks = true
+    ShowBreadCrumbs = true
+    ShowCodeCopyButtons = true
+    ShowToc = true
+    TocOpen = false
+    defaultTheme = "auto"
+    displayFullLangName = false   # mostra "PT" em vez de "Português"
+    # socialIcons podem ser compartilhados ou definidos por idioma
+    socialIcons = [
+      { name = "github", url = "https://github.com/guilhermercarvalho" },
+      { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },
+      { name = "email", url = "mailto:dev.gcarvalho@gmail.com" }
+    ]
+
+  [[languages.pt-br.menu.main]]
+    name = "Início"
+    url = "https://guilhermercarvalho.github.io/"
+    weight = 1
+  [[languages.pt-br.menu.main]]
+    name = "Posts"
+    url = "/posts"
+    weight = 2
+  [[languages.pt-br.menu.main]]
+    name = "Sobre"
+    url = "/about"
+    weight = 3
+  [[languages.pt-br.menu.main]]
+    name = "Tags"
+    url = "/tags"
+    weight = 4
+  [[languages.pt-br.menu.main]]
+    name = "Buscar"
+    url = "/search"
+    weight = 5
+
+# ============================================
+# IDIOMA 2 – Inglês
+# ============================================
+[languages.en]
+  baseURL = 'https://guilhermercarvalho.github.io/blog/en'
+  languageName = "English"
   weight = 2
-[[menu.main]]
-  name = "Sobre"
-  url = "/about"
-  weight = 3
-[[menu.main]]
-  name = "Tags"
-  url = "/tags"
-  weight = 4
-[[menu.main]]
-  name = "Buscar"
-  url = "/search"
-  weight = 5
+  contentDir = "content/en"
+  title = "Guilherme Carvalho · Blog"
+
+  [languages.en.params]
+    author = "Guilherme Carvalho"
+    description = "Articles about backend development, DevOps, and productivity."
+    ShowReadingTime = true
+    ShowShareButtons = true
+    ShowPostNavLinks = true
+    ShowBreadCrumbs = true
+    ShowCodeCopyButtons = true
+    ShowToc = true
+    TocOpen = false
+    defaultTheme = "auto"
+    displayFullLangName = false   # mostra "EN"
+    socialIcons = [
+      { name = "github", url = "https://github.com/guilhermercarvalho" },
+      { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },
+      { name = "email", url = "mailto:dev.gcarvalho@gmail.com" }
+    ]
+
+  [[languages.en.menu.main]]
+    name = "Home"
+    url = "https://guilhermercarvalho.github.io/"
+    weight = 1
+  [[languages.en.menu.main]]
+    name = "Posts"
+    url = "/posts"
+    weight = 2
+  [[languages.en.menu.main]]
+    name = "About"
+    url = "/about"
+    weight = 3
+  [[languages.en.menu.main]]
+    name = "Tags"
+    url = "/tags"
+    weight = 4
+  [[languages.en.menu.main]]
+    name = "Search"
+    url = "/search"
+    weight = 5
