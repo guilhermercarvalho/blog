@@ -8,18 +8,25 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Configure Git credentials for private GitLab submodule
+        run: |
+          git config --global url."https://oauth2:${{ secrets.GITLAB_CONTENT_TOKEN }}@gitlab.com".insteadOf "https://gitlab.com"
+
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: "0.159.2"
           extended: true
+
       - name: Build
         env:
           HUGO_GA_ID: ${{ secrets.GA_MEASUREMENT_ID }}
         run: hugo --minify --environment production
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
