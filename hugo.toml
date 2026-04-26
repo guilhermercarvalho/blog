@@ -18,14 +18,15 @@ enableRobotsTXT = true
   author = "Guilherme Carvalho"
   description = "Artigos sobre desenvolvimento backend, DevOps e produtividade."
 
-  # Links sociais (aparecem no header/footer)
+  [params.assets]
+    favicon = "/favicon.svg"
+
   socialIcons = [
     { name = "github", url = "https://github.com/guilhermercarvalho" },
     { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },
     { name = "email", url = "mailto:dev.gcarvalho@gmail.com" }
   ]
 
-  # Funcionalidades
   ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = true
@@ -34,15 +35,12 @@ enableRobotsTXT = true
   ShowToc = true
   TocOpen = false
 
-  # Tema (auto = detecta preferência do sistema)
   defaultTheme = "auto"
 
-  # Home info params
   [params.homeInfoParams]
     Title = "Blog"
     Content = "Bem-vindo ao meu blog! Aqui compartilho aprendizados, projetos e reflexões sobre desenvolvimento de software."
 
-# Menu
 [[menu.main]]
   name = "Home"
   url = "https://guilhermercarvalho.github.io/"
