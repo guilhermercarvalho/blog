@@ -1,4 +1,4 @@
-baseURL = 'https://guilhermercarvalho.github.io/blog'
+baseURL = 'https://guilhermercarvalho.github.io/blog/'
 theme = 'PaperMod'
 enableRobotsTXT = true
 
@@ -17,7 +17,9 @@ disableDefaultLanguageRedirect = false
   category = "categories"
 
 [params.assets]
-  disableFingerprinting = true   # Corrige o erro de integridade do CSS
+  disableFingerprinting = true
+[params.assets.style]
+  disableFingerprinting = true   # instrução específica para o PaperMod não gerar hash no CSS
 
 # --------------- Português (padrão) ---------------
 [languages.pt-br]
@@ -65,7 +67,6 @@ disableDefaultLanguageRedirect = false
 
 # --------------- Inglês ---------------
 [languages.en]
-  baseURL = 'https://guilhermercarvalho.github.io/blog/en'
   languageName = "English"
   weight = 2
   contentDir = "content/en"
