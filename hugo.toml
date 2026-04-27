@@ -2,7 +2,6 @@ baseURL = 'https://guilhermercarvalho.github.io/blog'
 theme = 'PaperMod'
 enableRobotsTXT = true
 
-# --- Multilíngue ---
 defaultContentLanguage = 'pt-br'
 defaultContentLanguageInSubdir = false
 disableDefaultLanguageRedirect = false
@@ -13,14 +12,11 @@ disableDefaultLanguageRedirect = false
 [pagination]
   pagerSize = 10
 
-# Taxonomias globais (você pode repetir em cada idioma se quiser traduzi-las)
 [taxonomies]
   tag = "tags"
   category = "categories"
 
-# ============================================
-# IDIOMA 1 – Português (padrão)
-# ============================================
+# --------------- Português (padrão) ---------------
 [languages.pt-br]
   languageName = "Português (Brasil)"
   weight = 1
@@ -38,8 +34,7 @@ disableDefaultLanguageRedirect = false
     ShowToc = true
     TocOpen = false
     defaultTheme = "auto"
-    displayFullLangName = false   # mostra "PT" em vez de "Português"
-    # socialIcons podem ser compartilhados ou definidos por idioma
+    displayFullLangName = false
     socialIcons = [
       { name = "github", url = "https://github.com/guilhermercarvalho" },
       { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },
@@ -67,9 +62,7 @@ disableDefaultLanguageRedirect = false
     url = "/search"
     weight = 5
 
-# ============================================
-# IDIOMA 2 – Inglês
-# ============================================
+# --------------- Inglês ---------------
 [languages.en]
   baseURL = 'https://guilhermercarvalho.github.io/blog/en'
   languageName = "English"
@@ -88,7 +81,7 @@ disableDefaultLanguageRedirect = false
     ShowToc = true
     TocOpen = false
     defaultTheme = "auto"
-    displayFullLangName = false   # mostra "EN"
+    displayFullLangName = false
     socialIcons = [
       { name = "github", url = "https://github.com/guilhermercarvalho" },
       { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },

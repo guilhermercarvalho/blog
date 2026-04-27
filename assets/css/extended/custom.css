@@ -1,35 +1,26 @@
-/* ============================================
-   ALINHAMENTO VISUAL COM O PORTFÓLIO PRINCIPAL
-   Cores baseadas no design system do portfolio
-   ============================================ */
-
-/* --- Tema Claro (Padrão) --- */
 :root {
-  --primary: #2563eb;          /* Azul principal (Tailwind blue-600) */
-  --content: #171717;          /* Texto principal (neutral-900) */
-  --secondary: #525252;        /* Texto secundário (neutral-600) */
-  --theme: #fafafa;            /* Fundo da página (neutral-50) */
-  --entry: #ffffff;            /* Fundo dos cards (white) */
-  --border: #e5e5e5;           /* Bordas (neutral-200) */
+  --primary: #2563eb;
+  --content: #171717;
+  --secondary: #525252;
+  --theme: #fafafa;
+  --entry: #ffffff;
+  --border: #e5e5e5;
 }
 
-/* --- Tema Escuro --- */
 :root[data-theme="dark"],
 .dark {
-  --primary: #3b82f6;          /* Azul principal (Tailwind blue-500) */
-  --content: #f5f5f5;          /* Texto principal (neutral-100) */
-  --secondary: #a3a3a3;        /* Texto secundário (neutral-400) */
-  --theme: #0a0a0a;            /* Fundo da página (neutral-950) */
-  --entry: #171717;            /* Fundo dos cards (neutral-900) */
-  --border: #262626;           /* Bordas (neutral-800) */
+  --primary: #3b82f6;
+  --content: #f5f5f5;
+  --secondary: #a3a3a3;
+  --theme: #0a0a0a;
+  --entry: #171717;
+  --border: #262626;
 }
 
-/* Tipografia alinhada ao portfolio */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* Link de volta ao portfólio */
 .home-portfolio-link {
   display: inline-block;
   margin-top: 1rem;
