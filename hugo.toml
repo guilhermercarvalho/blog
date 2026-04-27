@@ -16,13 +16,15 @@ disableDefaultLanguageRedirect = false
   tag = "tags"
   category = "categories"
 
+[params.assets]
+  disableFingerprinting = true   # Corrige o erro de integridade do CSS
+
 # --------------- Português (padrão) ---------------
 [languages.pt-br]
   languageName = "Português (Brasil)"
   weight = 1
   contentDir = "content/pt"
   title = "Guilherme Carvalho · Blog"
-
   [languages.pt-br.params]
     author = "Guilherme Carvalho"
     description = "Artigos sobre desenvolvimento backend, DevOps e produtividade."
@@ -40,7 +42,6 @@ disableDefaultLanguageRedirect = false
       { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },
       { name = "email", url = "mailto:dev.gcarvalho@gmail.com" }
     ]
-
   [[languages.pt-br.menu.main]]
     name = "Início"
     url = "https://guilhermercarvalho.github.io/"
@@ -69,7 +70,6 @@ disableDefaultLanguageRedirect = false
   weight = 2
   contentDir = "content/en"
   title = "Guilherme Carvalho · Blog"
-
   [languages.en.params]
     author = "Guilherme Carvalho"
     description = "Articles about backend development, DevOps, and productivity."
@@ -87,7 +87,6 @@ disableDefaultLanguageRedirect = false
       { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },
       { name = "email", url = "mailto:dev.gcarvalho@gmail.com" }
     ]
-
   [[languages.en.menu.main]]
     name = "Home"
     url = "https://guilhermercarvalho.github.io/"
