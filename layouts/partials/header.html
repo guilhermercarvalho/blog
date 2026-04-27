@@ -91,8 +91,9 @@
                 {{- if findRE "://" .URL }}
                     {{- $menu_item_url = .URL }}
                 {{- else }}
-                    {{- $rel := relLangURL .URL }}
-                    {{- $menu_item_url = printf "%s%s" site.BaseURL (substr $rel 1) }}
+                    {{- $path := strings.TrimPrefix "/" .URL }}
+                    {{- $rel := relLangURL $path }}
+                    {{- $menu_item_url = printf "%s%s" site.BaseURL $rel }}
                 {{- end }}
                 {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
                 <li>
