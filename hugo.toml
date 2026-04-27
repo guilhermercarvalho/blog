@@ -39,7 +39,7 @@ disableDefaultLanguageRedirect = false
     ShowToc = true
     TocOpen = false
     defaultTheme = "auto"
-    displayFullLangName = false
+    displayFullLangName = true
     socialIcons = [
       { name = "github", url = "https://github.com/guilhermercarvalho" },
       { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },
@@ -83,7 +83,7 @@ disableDefaultLanguageRedirect = false
     ShowToc = true
     TocOpen = false
     defaultTheme = "auto"
-    displayFullLangName = false
+    displayFullLangName = true
     socialIcons = [
       { name = "github", url = "https://github.com/guilhermercarvalho" },
       { name = "linkedin", url = "https://linkedin.com/in/guilhermercarvalho" },

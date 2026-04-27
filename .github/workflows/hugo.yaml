@@ -33,6 +33,14 @@ jobs:
       - name: Fix multilingual URLs
         run: ./scripts/fix-urls.sh
 
+      - name: Validate URLs
+        run: |
+          if grep -rq '/en/blog/' public/; then
+            echo "Incorrect URLs found"
+            grep -r '/en/blog/' public/ | head -n 5
+            exit 1
+          fi
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
