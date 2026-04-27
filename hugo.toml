@@ -18,6 +18,7 @@ disableDefaultLanguageRedirect = false
 
 [params.assets]
   disableFingerprinting = true
+  favicon = "favicon.svg"
 [params.assets.style]
   disableFingerprinting = true   # instrução específica para o PaperMod não gerar hash no CSS
 
